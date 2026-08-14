@@ -588,24 +588,10 @@
         <h2>Columnas y cartas al director</h2>
       </div>
     </div>
-    <ul class="pub-list">
-      <li class="pub-item">
-        <span class="pub-folio">01</span>
-        <span class="pub-title">Sobre la voluntad institucional de Carabineros</span>
-        <span class="pub-meta">Carta al director · 2026</span>
-      </li>
-      <li class="pub-item">
-        <span class="pub-folio">02</span>
-        <span class="pub-title">Ley Naín-Retamal y el uso legítimo de la fuerza</span>
-        <span class="pub-meta">Columna de opinión · 2026</span>
-      </li>
-      <li class="pub-item">
-        <span class="pub-folio">03</span>
-        <span class="pub-title">Reflexión sobre el Fondo Revalorizador de Pensiones</span>
-        <span class="pub-meta">Análisis previsional · 2026</span>
-      </li>
+    <ul class="pub-list" id="pubList">
+      <li class="pub-item"><span class="pub-title" style="color:var(--ink-faint); font-family:'Inter',sans-serif; font-size:14px;">Cargando publicaciones…</span></li>
     </ul>
-    <p class="pub-note">Espacio de ejemplo — reemplazar por tus publicaciones reales, con enlace a cada artículo, al entregar los contenidos definitivos.</p>
+    <p class="pub-note">Para agregar o editar publicaciones, modifica el archivo <code>publicaciones.json</code> en tu repositorio de GitHub — no hace falta tocar esta página.</p>
   </div>
 </section>
 
@@ -688,6 +674,33 @@
 <div class="music-label">Música ambiental</div>
 
 <script>
+  // Carga de publicaciones desde publicaciones.json (edítalo ahí, no aquí)
+  fetch('publicaciones.json')
+    .then(r => r.json())
+    .then(pubs => {
+      const list = document.getElementById('pubList');
+      if (!pubs.length) {
+        list.innerHTML = '<li class="pub-item"><span class="pub-title" style="color:var(--ink-faint); font-family:\'Inter\',sans-serif; font-size:14px;">Aún no hay publicaciones cargadas.</span></li>';
+        return;
+      }
+      list.innerHTML = pubs.map((p, i) => {
+        const folio = String(i + 1).padStart(2, '0');
+        const isPdf = p.url && p.url.toLowerCase().endsWith('.pdf');
+        const badge = isPdf ? ' <span style="font-family:\'Inter\',sans-serif; font-size:9px; letter-spacing:.06em; color:var(--bronze); border:1px solid var(--bronze); border-radius:2px; padding:2px 5px; vertical-align:middle;">PDF</span>' : '';
+        const titleHtml = p.url
+          ? `<a href="${p.url}" target="_blank" rel="noopener" style="text-decoration:none; border-bottom:1px solid var(--bronze-light);">${p.titulo}</a>${badge}`
+          : p.titulo;
+        return `<li class="pub-item">
+          <span class="pub-folio">${folio}</span>
+          <span class="pub-title">${titleHtml}</span>
+          <span class="pub-meta">${p.medio} · ${p.fecha}</span>
+        </li>`;
+      }).join('');
+    })
+    .catch(() => {
+      document.getElementById('pubList').innerHTML = '<li class="pub-item"><span class="pub-title" style="color:var(--ink-faint); font-family:\'Inter\',sans-serif; font-size:14px;">No se pudo cargar publicaciones.json</span></li>';
+    });
+
   // Navegación activa según scroll
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.tabs a');
