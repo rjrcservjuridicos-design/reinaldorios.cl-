@@ -66,7 +66,22 @@
   },
   {
     "norma": "Código Civil",
-    "materia": "Régimen general de obligaciones, contratos y sucesiones.",
-    "url": ""
+    "materia": "Texto actualizado — consulta en línea en la Biblioteca del Congreso Nacional (Ley Chile).",
+    "url": "https://www.bcn.cl/leychile/Navegar?idNorma=1973"
+  },
+  {
+    "norma": "Código de Procedimiento Civil",
+    "materia": "Texto actualizado — consulta en línea en la Biblioteca del Congreso Nacional (Ley Chile).",
+    "url": "https://www.bcn.cl/leychile/Navegar?idNorma=22740"
+  },
+  {
+    "norma": "Código Procesal Penal",
+    "materia": "Texto actualizado — consulta en línea en la Biblioteca del Congreso Nacional (Ley Chile).",
+    "url": "https://www.bcn.cl/leychile/Navegar?idNorma=176595"
+  },
+  {
+    "norma": "Código Orgánico de Tribunales",
+    "materia": "Texto actualizado — consulta en línea en la Biblioteca del Congreso Nacional (Ley Chile).",
+    "url": "https://www.bcn.cl/leychile/Navegar?idNorma=25563"
   }
 ]
