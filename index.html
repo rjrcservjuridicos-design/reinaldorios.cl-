@@ -177,11 +177,44 @@
 
   /* seal */
   .seal-wrap{
-    display:flex; justify-content:center; align-items:center;
+    display:flex; flex-direction:column; justify-content:center; align-items:center; gap:26px;
   }
   .seal{width:min(280px, 70vw); height:auto;}
   .seal .ring{ transform-origin:150px 150px; animation:rotate 60s linear infinite; }
   @keyframes rotate{ to{ transform:rotate(360deg); } }
+
+  /* ===== RETRATO ===== */
+  .portrait-frame{
+    width:min(230px, 58vw);
+    aspect-ratio: 4 / 5;
+    border-radius:3px;
+    overflow:hidden;
+    border:1px solid var(--bronze-light);
+    box-shadow:0 14px 32px rgba(18,32,60,0.20);
+    background:var(--paper-raised);
+    position:relative;
+  }
+  .portrait-frame::after{
+    content:"";
+    position:absolute; inset:0;
+    border:1px solid rgba(244,239,228,0.35);
+    margin:5px;
+    pointer-events:none;
+  }
+  .portrait-frame img{
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:center 18%;
+    display:block;
+  }
+  .portrait-caption{
+    font-family:'Inter',sans-serif;
+    font-size:10.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    text-align:center;
+  }
 
   /* ===== SECTION SCAFFOLD ===== */
   section{padding:88px 0;}
@@ -509,7 +542,11 @@
       </div>
     </div>
     <div class="seal-wrap">
-      <img src="logo-rjrc.png" alt="RJRIOSC Abogado" style="width:min(360px, 80vw); height:auto;">
+      <img src="logo-rjrc.png" alt="RJRIOSC Abogado" style="width:min(230px, 58vw); height:auto;">
+      <div class="portrait-frame">
+        <img src="reinaldo-rios-cataldo-foto.jpg" alt="Reinaldo José Ríos Cataldo, abogado">
+      </div>
+      <span class="portrait-caption">Reinaldo José Ríos Cataldo</span>
     </div>
   </div>
 </section>
@@ -768,6 +805,3 @@
 
 </body>
 </html>
-
-
-
