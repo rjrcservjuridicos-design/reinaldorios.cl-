@@ -664,6 +664,11 @@
       </dl>
     </div>
     <form class="contact-form" action="https://formsubmit.co/rjrcservjuridicos@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Nueva consulta desde rjrioscataldo.cl">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://rjrioscataldo.cl/?enviado=1#contacto">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <div>
         <label for="nombre">Nombre</label>
         <input id="nombre" name="nombre" type="text" required>
@@ -674,6 +679,7 @@
       </div>
       <button type="submit" class="btn solid" style="align-self:flex-start; border:none; cursor:pointer;">Enviar consulta</button>
     </form>
+    <p id="contactoGracias" style="display:none; margin-top:14px; font-family:'Inter',sans-serif; font-size:14px; color:var(--bronze);">¡Gracias! Su consulta fue enviada correctamente.</p>
   </div>
 </section>
 
@@ -700,6 +706,13 @@
 <div class="music-label">Música ambiental</div>
 
 <script>
+  // Aviso de "consulta enviada" al volver desde FormSubmit
+  if (new URLSearchParams(window.location.search).get('enviado') === '1') {
+    const aviso = document.getElementById('contactoGracias');
+    if (aviso) aviso.style.display = 'block';
+    history.replaceState(null, '', window.location.pathname + window.location.hash);
+  }
+
   // Carga de publicaciones desde publicaciones.json (edítalo ahí, no aquí)
   fetch('publicaciones.json')
     .then(r => r.json())
